@@ -1,48 +1,29 @@
 import { Component, inject } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { MatButtonModule } from '@angular/material/button';
-import { MatFormFieldModule } from '@angular/material/form-field'
-import { MatInputModule } from '@angular/material/input'
 import { ProductsService } from '../../shared/services/products.service';
 import { MatSnackBar } from '@angular/material/snack-bar'
 import { Router } from '@angular/router';
+import { Product } from '../../shared/interfaces/product.interface';
+import { FormComponent } from "../../shared/components/form/form.component";
 @Component({
-  selector: 'app-create',
-  standalone: true,
-  imports: [ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule],
-  template: `
-      <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form-container">
-        <div class="form-content-container">
-          <mat-form-field>
-            <mat-label>Titulo Produto</mat-label>
-            <input matInput type="text" formControlName="title" placeholder="Título">
-          </mat-form-field>
-          <button type="submit" mat-raised-button color="accent" (click)="onSubmit()">Salvar Produto</button>
-        </div>
-      </form>
+    selector: 'app-create',
+    standalone: true,
+    template: `
+    <app-form (done)="onSubmit($event)"></app-form>
   `,
-  styleUrl: './create.component.scss'
+    styleUrl: './create.component.scss',
+    imports: [FormComponent]
 })
 export class CreateComponent {
   productService = inject(ProductsService);
   router = inject(Router);
   matSnackBar = inject(MatSnackBar)
-  form = new FormGroup({
-
-    title: new FormControl<string>('', {
-      nonNullable: true,
-      validators: Validators.required,
-    }),
-  });
-
-  onSubmit() {
-    this.productService.postProduct({
-      title: this.form.controls.title.value
-    })
+ 
+  onSubmit(product: Product) {
+    this.productService
+      .postProduct(product)
       .subscribe(() => {
-        this.matSnackBar.open('Produto adicionado com sucesso!', 'Ok')
-        this.router.navigateByUrl('/').catch(console.log)
+        this.matSnackBar.open('Produto criado com sucesso!', 'Ok')
+        this.router.navigateByUrl('/');
       })
-    this.form.controls.title.value;
   }
 }

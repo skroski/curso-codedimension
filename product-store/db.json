@@ -1,7 +1,7 @@
 {
   "products": [
     {
-      "title": "Produto de Teste",
+      "title": "teste",
       "id": "1"
     },
     {
@@ -23,6 +23,14 @@
     {
       "id": "f981",
       "title": "computador"
+    },
+    {
+      "id": "cd1a",
+      "title": "Copo"
+    },
+    {
+      "id": "74c8",
+      "title": "Copo"
     }
   ]
 }
