@@ -14,7 +14,7 @@ import { MatButtonModule } from '@angular/material/button';
     <a mat-raised-button color="primary" [routerLink]="['create-product']">Criar Produto</a>
   </div>
   @for (product of products; track product.id) {
-    <app-card [product]="product" (edit)="onEdit()"></app-card>
+    <app-card [product]="product" (edit)="onEdit(product)"></app-card>
   }
   `,
   styleUrl: './list.component.scss'
@@ -26,12 +26,13 @@ export class ListComponent implements OnInit {
   products: Product[] = [];
 
   ngOnInit() {
-    this.productsService.getAllProducts().subscribe((products) => {
+    this.productsService.getAllProducts()
+    .subscribe((products) => {
       this.products = products
     })
   }
-  onEdit(){
-    this.router.navigateByUrl('/edit-product')
+  onEdit(product: Product) {
+    this.router.navigate(['/edit-product', product.id])
   }
 
 }

@@ -13,7 +13,7 @@ import { Product } from '../../../../shared/interfaces/product.interface';
               <mat-card-title>{{ productTitle() }}</mat-card-title>
             </mat-card-header>
             <mat-card-actions>
-              <button mat-button (click)="edit.emit()">Editar</button>
+              <button mat-button (click)="onEdit()">Editar</button>
               <button mat-button>Deletar</button>
             </mat-card-actions>
           </mat-card>
@@ -24,7 +24,11 @@ export class CardComponent {
   product = input.required<Product>();
 
   @Output() edit = new EventEmitter();
-  
+
   productTitle = computed(() => this.product().title);
+
+  onEdit() {
+    this.edit.emit();
+  }
 
 }

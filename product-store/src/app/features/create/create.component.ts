@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
   standalone: true,
   imports: [ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule],
   template: `
-      <form [formGroup]="form" (ngSubmit)="onSubmit" class="form-container">
+      <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form-container">
         <div class="form-content-container">
           <mat-form-field>
             <mat-label>Titulo Produto</mat-label>
