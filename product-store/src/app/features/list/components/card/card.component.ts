@@ -14,7 +14,7 @@ import { Product } from '../../../../shared/interfaces/product.interface';
             </mat-card-header>
             <mat-card-actions>
               <button mat-button (click)="onEdit()">Editar</button>
-              <button mat-button>Deletar</button>
+              <button mat-button (click)="onDelete()">Deletar</button>
             </mat-card-actions>
           </mat-card>
   `,
@@ -24,11 +24,15 @@ export class CardComponent {
   product = input.required<Product>();
 
   @Output() edit = new EventEmitter();
+  @Output() delete = new EventEmitter();
 
   productTitle = computed(() => this.product().title);
 
   onEdit() {
     this.edit.emit();
+  }
+  onDelete() {
+    this.delete.emit();
   }
 
 }
