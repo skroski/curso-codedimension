@@ -1,32 +1,24 @@
 {
   "products": [
     {
-      "id": "dc42",
-      "title": "Caneca"
-    },
-    {
-      "id": "a200",
-      "title": "Blusa"
-    },
-    {
-      "id": "f981",
-      "title": "computador"
-    },
-    {
-      "id": "cd1a",
-      "title": "Copo"
-    },
-    {
-      "id": "74c8",
-      "title": "Copo"
-    },
-    {
       "id": "1af2",
       "title": "Test Drive"
     },
     {
-      "id": "4400",
-      "title": "Test Drive"
+      "id": "7b46",
+      "title": "Bolo"
+    },
+    {
+      "id": "084b",
+      "title": "Bolo"
+    },
+    {
+      "id": "ed76",
+      "title": "Lapis"
+    },
+    {
+      "id": "81ce",
+      "title": "Produto2"
     }
   ]
 }
