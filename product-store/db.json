@@ -1,24 +1,12 @@
 {
   "products": [
     {
-      "id": "1af2",
-      "title": "Test Drive"
+      "id": "3bb4",
+      "title": "Teste"
     },
     {
-      "id": "7b46",
-      "title": "Bolo"
-    },
-    {
-      "id": "084b",
-      "title": "Bolo"
-    },
-    {
-      "id": "ed76",
-      "title": "Lapis"
-    },
-    {
-      "id": "c138",
-      "title": "Caneta2"
+      "id": "2c52",
+      "title": "Teste"
     }
   ]
 }

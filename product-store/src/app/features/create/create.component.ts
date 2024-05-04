@@ -15,13 +15,11 @@ import { FormComponent } from "../../shared/components/form/form.component";
 })
 export class CreateComponent {
   productService = inject(ProductsService);
-  router = inject(Router);
   matSnackBar = inject(MatSnackBar)
+  router = inject(Router);
  
   onSubmit(product: Product) {
-    this.productService
-      .postProduct(product)
-      .subscribe(() => {
+    this.productService.postProduct(product).subscribe(() => {
         this.matSnackBar.open('Produto criado com sucesso!', 'Ok')
         this.router.navigateByUrl('/');
       })

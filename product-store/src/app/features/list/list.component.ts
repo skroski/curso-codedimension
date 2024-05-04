@@ -7,18 +7,26 @@ import { MatButtonModule } from '@angular/material/button';
 
 import { DialogConfirmationService } from '../../shared/services/dialog-confirmation.service';
 import { filter } from 'rxjs';
+import { NoItemsComponent } from './components/no-items/no-items.component';
 
 
 @Component({
   selector: 'app-list',
   standalone: true,
-  imports: [CardComponent, RouterLink, MatButtonModule],
+  imports: [CardComponent, RouterLink, MatButtonModule, NoItemsComponent],
   template: `
   <div class="action-container">
     <a mat-raised-button color="primary" [routerLink]="['create-product']">Criar Produto</a>
   </div>
   @for (product of products(); track product.id) {
-    <app-card [product]="product" (delete)="onDelete(product)" (edit)="onEdit(product)"></app-card>
+    @defer (on immediate){
+      <app-card [product]="product" (delete)="onDelete(product)" (edit)="onEdit(product)"></app-card>
+    }
+  }
+  @empty {
+    @defer (on immediate){
+    <app-no-items></app-no-items>
+    }
   }
   `,
   styleUrl: './list.component.scss'
@@ -27,7 +35,9 @@ export class ListComponent implements OnInit {
   productsService = inject(ProductsService);
   router = inject(Router);
   dialogConfirmationService = inject(DialogConfirmationService);
-  products = signal<Product[]>(inject(ActivatedRoute).snapshot.data['products']);
+  products = signal<Product[]>(
+    inject(ActivatedRoute).snapshot.data['products'],
+  );
 
   ngOnInit() {
     this.getAllProductsList();
