@@ -18,10 +18,15 @@ import { NoItemsComponent } from './components/no-items/no-items.component';
   <div class="action-container">
     <a mat-raised-button color="primary" [routerLink]="['create-product']">Criar Produto</a>
   </div>
+  
   @for (product of products(); track product.id) {
+    
     @defer (on immediate){
-      <app-card [product]="product" (delete)="onDelete(product)" (edit)="onEdit(product)"></app-card>
+      <div class="item-container">
+        <app-card [product]="product" (delete)="onDelete(product)" (edit)="onEdit(product)"></app-card>
+      </div>
     }
+    
   }
   @empty {
     @defer (on immediate){
